@@ -1,4 +1,16 @@
 function Card(props) {
+  const onClickButton = () => {
+    alert("hi");
+    copyPageUrl();
+  };
+  async function copyPageUrl() {
+    try {
+      await navigator.clipboard.writeText("srtst");
+      console.log("URL страницы скопирован в буфер обмена");
+    } catch (err) {
+      console.error("Не удалось скопировать: ", err);
+    }
+  }
   return (
     <div className="card">
       <div className="favorite">
@@ -15,7 +27,7 @@ function Card(props) {
             <span>Цена:</span>
             <b>{props.price} руб.</b>
           </div>
-          <button onClick={() => alert(props.artistName)}>
+          <button onClick={() => onClickButton()}>
             <img width={11} height={11} src="/img/plus.svg" alt="plus" />
           </button>
         </div>

@@ -1,14 +1,14 @@
 $background: #080808;
 $foreground: #181818;
-$border: #2A2A2A;
-$button: #FFF;
+$border: #2a2a2a;
+$button: #fff;
 
 .clear {
   * {
     box-sizing: border-box;
     outline: none;
   }
-  
+
   a {
     color: inherit;
     text-decoration: none;
@@ -25,8 +25,8 @@ $button: #FFF;
 }
 
 * {
-  font-family: 'Inter', system-ui;
-  color: #fff
+  font-family: "Inter", system-ui;
+  color: #fff;
 }
 
 body {
@@ -56,7 +56,7 @@ header {
     img {
       margin: 0 5px;
     }
-    
+
     h2 {
       text-transform: uppercase;
     }
@@ -72,8 +72,8 @@ header {
   }
 
   .header_right {
-      display: flex;
-      align-items: center;
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -114,11 +114,11 @@ header {
   margin-right: 30px;
   overflow: hidden;
   transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
-  
+
   &:hover {
     box-shadow: rgb(255 255 255 / 3%) 0px 14px 30px;
     transform: translateY(-5px);
-    
+
     .favorite {
       display: block;
     }
@@ -142,12 +142,13 @@ header {
 
   .card_name {
     margin-bottom: 20px;
-    
-    h4, h5 {
+
+    h4,
+    h5 {
       font-size: 14px;
       margin: 0;
     }
-    
+
     h5 {
       font-weight: 400;
     }
@@ -207,10 +208,23 @@ header {
     display: flex;
     flex-direction: column;
 
-    h2 {
-      margin: 0;
-      font-size: 24px;
+    .header {
       margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+
+      h2 {
+        margin: 0;
+        font-size: 24px;
+      }
+
+      .drawer_close {
+        padding: 0 10px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
 
     .items {
@@ -264,7 +278,7 @@ header {
   b {
     font-size: 14px;
   }
-  
+
   .remove_btn {
     margin: 0 20px;
     opacity: 0.4;
@@ -278,7 +292,7 @@ header {
 }
 
 .cart_price {
-  margin-bottom: 20px!important;
+  margin-bottom: 20px !important;
 
   li {
     display: flex;
