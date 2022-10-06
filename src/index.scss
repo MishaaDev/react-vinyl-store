@@ -74,6 +74,10 @@ header {
   .header_right {
     display: flex;
     align-items: center;
+
+    li {
+      cursor: pointer;
+    }
   }
 }
 
@@ -175,17 +179,8 @@ header {
     }
   }
 
-  button {
-    background: none;
-    border: 1px solid $border;
-    box-sizing: border-box;
+  .card_plus {
     cursor: pointer;
-    padding: 0;
-    font-size: 0;
-
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
   }
 }
 

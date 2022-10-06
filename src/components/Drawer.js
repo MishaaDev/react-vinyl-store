@@ -1,10 +1,11 @@
-function Drawer() {
+function Drawer(props) {
   return (
-    <div style={{ display: "none" }} className="drawer_box">
+    <div className="drawer_box">
       <div className="drawer">
         <div className="header">
           <h2>Корзина</h2>
           <img
+            onClick={props.onClose}
             className="drawer_close"
             src="/img/cross.svg"
             alt="Drawer close"

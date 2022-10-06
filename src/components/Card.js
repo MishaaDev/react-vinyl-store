@@ -1,16 +1,14 @@
+import React from "react";
+
 function Card(props) {
-  const onClickButton = () => {
-    alert("hi");
-    copyPageUrl();
+  const [isAdded, setIsAdded] = React.useState(false);
+
+  const onClickPlus = () => {
+    setIsAdded(!isAdded);
   };
-  async function copyPageUrl() {
-    try {
-      await navigator.clipboard.writeText("srtst");
-      console.log("URL страницы скопирован в буфер обмена");
-    } catch (err) {
-      console.error("Не удалось скопировать: ", err);
-    }
-  }
+
+  console.log(isAdded);
+
   return (
     <div className="card">
       <div className="favorite">
@@ -27,9 +25,12 @@ function Card(props) {
             <span>Цена:</span>
             <b>{props.price} руб.</b>
           </div>
-          <button onClick={() => onClickButton()}>
-            <img width={11} height={11} src="/img/plus.svg" alt="plus" />
-          </button>
+          <img
+            className="card_plus"
+            onClick={onClickPlus}
+            src={isAdded ? "/img/checked.svg" : "/img/plus.svg"}
+            alt="plus"
+          />
         </div>
       </div>
     </div>
