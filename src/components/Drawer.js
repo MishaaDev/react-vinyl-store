@@ -1,55 +1,38 @@
-function Drawer(props) {
+function Drawer({ onClose, items = [] }) {
   return (
     <div className="drawer_box">
       <div className="drawer">
         <div className="header">
           <h2>Корзина</h2>
           <img
-            onClick={props.onClose}
+            onClick={onClose}
             className="drawer_close"
             src="/img/cross.svg"
             alt="Drawer close"
           />
         </div>
         <div className="items">
-          <div className="cart_item_box">
-            <div className="cart_item">
-              <img
-                className="item_photo"
-                width={70}
-                height={70}
-                src="/img/items/pink-floyd-wish-you-were-here.jpg"
-                alt="cover"
-              />
-              <div>
-                <div className="item_name">
-                  <p>Pink Floyd</p>
-                  <p>Wish You Were Here</p>
+          {items.map((obj) => (
+            <div className="cart_item_box">
+              <div className="cart_item">
+                <img
+                  className="item_photo"
+                  width={70}
+                  height={70}
+                  src={obj.imadeUrl}
+                  alt="cover"
+                />
+                <div>
+                  <div className="item_name">
+                    <p>{obj.artistName}</p>
+                    <p>{obj.albumName}</p>
+                  </div>
+                  <b>{obj.price} руб.</b>
                 </div>
-                <b>2 394 руб.</b>
               </div>
+              <img className="remove_btn" src="/img/delete1.svg" alt="Remove" />
             </div>
-            <img className="remove_btn" src="/img/delete1.svg" alt="Remove" />
-          </div>
-          <div className="cart_item_box">
-            <div className="cart_item">
-              <img
-                className="item_photo"
-                width={70}
-                height={70}
-                src="/img/items/pink-floyd-wish-you-were-here.jpg"
-                alt="cover"
-              />
-              <div>
-                <div className="item_name">
-                  <p>Pink Floyd</p>
-                  <p>Wish You Were Here</p>
-                </div>
-                <b>2 394 руб.</b>
-              </div>
-            </div>
-            <img className="remove_btn" src="/img/delete1.svg" alt="Remove" />
-          </div>
+          ))}
         </div>
 
         <ul className="cart_price">

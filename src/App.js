@@ -45,6 +45,7 @@ const array = [
 
 function App() {
   const [items, setItems] = React.useState([]);
+  const [cartItems, setCartItems] = React.useState([]);
   const [cartOpened, setCartOpened] = React.useState(false);
 
   React.useEffect(() => {
@@ -53,9 +54,15 @@ function App() {
       .then((data) => setItems(data));
   }, []);
 
+  const onAddToCart = (item) => {
+    setCartItems((prev) => [...prev, item]);
+  };
+
   return (
     <div className="wrapper clear">
-      {cartOpened ? <Drawer onClose={() => setCartOpened(false)} /> : null}
+      {cartOpened ? (
+        <Drawer items={cartItems} onClose={() => setCartOpened(false)} />
+      ) : null}
       <Header onClickCart={() => setCartOpened(true)} />
 
       <div className="content">
@@ -67,12 +74,14 @@ function App() {
           </div>
         </div>
         <div className="items">
-          {items.map((obj) => (
+          {items.map((item, index) => (
             <Card
-              artistName={obj.artistName}
-              albumName={obj.albumName}
-              price={obj.price}
-              imageUrl={obj.imadeUrl}
+              key={index}
+              artistName={item.artistName}
+              albumName={item.albumName}
+              price={item.price}
+              imageUrl={item.imadeUrl}
+              onPlus={() => onAddToCart(item)}
             />
           ))}
         </div>
