@@ -2,46 +2,7 @@ import React from "react";
 import Card from "./components/Card";
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
-
-const array = [
-  {
-    artistName: "Pink Floyd",
-    albumName: "Wish You Were Here",
-    price: 4063,
-    imadeUrl: "/img/items/pink-floyd-wish-you-were-here.jpg",
-  },
-  {
-    artistName: "Adele",
-    albumName: "21",
-    price: 3512,
-    imadeUrl: "/img/items/adele-21.jpeg",
-  },
-  {
-    artistName: "Michael Jackson",
-    albumName: "Bad",
-    price: 2632,
-    imadeUrl: "/img/items/michael-jackson-bad.jpeg",
-  },
-  {
-    artistName: "Abba",
-    albumName: "Gold",
-    price: 5458,
-    imadeUrl: "/img/items/abba-gold.jpeg",
-  },
-  {
-    artistName: "Pink Floyd",
-    albumName: "Dark Side Of The Moon",
-    price: 3636,
-    imadeUrl: "/img/items/pink-floyd-dark-side-of-the-moon.jpeg",
-  },
-  {
-    artistName: "Linkin Park",
-    albumName: "Hybrid Theory (20th Anniversary Edition)",
-    price: 19990,
-    imadeUrl:
-      "/img/items/linkin-park-hybrid-theory-20th-anniversary-edition.jpeg",
-  },
-];
+import axios from "axios";
 
 function App() {
   const [items, setItems] = React.useState([]);
@@ -49,19 +10,37 @@ function App() {
   const [cartOpened, setCartOpened] = React.useState(false);
 
   React.useEffect(() => {
-    fetch("https://633ee2360dbc3309f3c01a63.mockapi.io/items")
-      .then((response) => response.json())
-      .then((data) => setItems(data));
+    axios
+      .get("https://633ee2360dbc3309f3c01a63.mockapi.io/items")
+      .then((res) => {
+        setItems(res.data);
+      });
+    axios
+      .get("https://633ee2360dbc3309f3c01a63.mockapi.io/cart")
+      .then((res) => {
+        setCartItems(res.data);
+      });
   }, []);
 
   const onAddToCart = (item) => {
+    axios.post("https://633ee2360dbc3309f3c01a63.mockapi.io/cart", item);
     setCartItems((prev) => [...prev, item]);
+  };
+
+  const onRemoveItem = (id) => {
+    console.log(id);
+    axios.delete(`https://633ee2360dbc3309f3c01a63.mockapi.io/cart/${id}`);
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
   return (
     <div className="wrapper clear">
       {cartOpened ? (
-        <Drawer items={cartItems} onClose={() => setCartOpened(false)} />
+        <Drawer
+          items={cartItems}
+          onClose={() => setCartOpened(false)}
+          onRemove={onRemoveItem}
+        />
       ) : null}
       <Header onClickCart={() => setCartOpened(true)} />
 
