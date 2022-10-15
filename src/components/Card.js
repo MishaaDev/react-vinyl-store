@@ -7,8 +7,6 @@ function Card(props) {
     setIsAdded(!isAdded);
   };
 
-  console.log(isAdded);
-
   return (
     <div className="card">
       <div className="favorite">

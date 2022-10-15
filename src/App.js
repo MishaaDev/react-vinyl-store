@@ -44,7 +44,14 @@ const array = [
 ];
 
 function App() {
+  const [items, setItems] = React.useState([]);
   const [cartOpened, setCartOpened] = React.useState(false);
+
+  React.useEffect(() => {
+    fetch("https://633ee2360dbc3309f3c01a63.mockapi.io/items")
+      .then((response) => response.json())
+      .then((data) => setItems(data));
+  }, []);
 
   return (
     <div className="wrapper clear">
@@ -60,7 +67,7 @@ function App() {
           </div>
         </div>
         <div className="items">
-          {array.map((obj) => (
+          {items.map((obj) => (
             <Card
               artistName={obj.artistName}
               albumName={obj.albumName}
